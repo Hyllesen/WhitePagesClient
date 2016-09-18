@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/WhitePages/java/whitepagesWSDL" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="whitepagesWSDL" targetNamespace="http://j2ee.netbeans.org/wsdl/WhitePages/java/whitepagesWSDL">
+    <types>
+        <xsd:schema xmlns:tns="http://j2ee.netbeans.org/wsdl/WhitePages/java/whitepagesWSDL" targetNamespace="http://j2ee.netbeans.org/wsdl/WhitePages/java/whitepagesWSDL">
+            <xsd:complexType name="person">
+                <xsd:sequence>
+                    <xsd:element name="address">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="street" type="xsd:string"/>
+                                <xsd:element name="postcode" type="xsd:string"/>
+                                <xsd:element name="city" type="xsd:string"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="phone" type="xsd:string"/>
+                <xsd:attribute name="firstName" type="xsd:string"/>
+                <xsd:attribute name="lastName" type="xsd:string"/>
+            </xsd:complexType>
+            <xsd:element name="request" type="tns:person"/>
+            <xsd:element name="response" type="xsd:string"/>
+        </xsd:schema>
+    </types>
+    <message name="whitepagesWSDLOperationRequest">
+        <part name="person" element="tns:request"/>
+    </message>
+    <message name="whitepagesWSDLOperationResponse">
+        <part name="output" element="tns:response"/>
+    </message>
+    <portType name="whitepagesWSDLPortType">
+        <operation name="addPerson">
+            <input name="input1" message="tns:whitepagesWSDLOperationRequest"/>
+            <output name="output1" message="tns:whitepagesWSDLOperationResponse"/>
+        </operation>
+    </portType>
+    <binding name="whitepagesWSDLPortTypeBinding" type="tns:whitepagesWSDLPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="addPerson">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="whitepagesWSDLService">
+        <port name="whitepagesWSDLPortTypeBindingPort" binding="tns:whitepagesWSDLPortTypeBinding">
+            <soap:address location="http://desktop-lhu7251:8080/WhitePages/whitepagesWSDLService"/>
+        </port>
+    </service>
+</definitions>
